@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule2">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+	<title></title>
+<!-- <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> -->
+
+</head>
+<body>
+<!-- <section class="sect">
+  <div class="p1"><img src="images/p_4.png" alt=""></div>
+  <div class="p2"><img src="images/p_7.png" alt=""></div>
+</section> -->
+<!-- 想要咋chrome中调试angularjs可以安装插件，batarang：Batarang是AngularJS调试的Google chrome插件 -->
+<!-- angular.js表达式 -->
+		<p ng-init="q1={a:1,b:2}">{{q1.a}}</p>
+		<p>{{3*4}}</p>
+		<div  ng-app="" ng-init="q='aa';w='bb'">
+			<p>{{q+w}}</p>
+			<!-- 也可以使用bind输出 -->
+			<p ng-bind="q + '...' + w"></p>
+		</div>
+
+		<!-- 对象 -->
+		<div ng-init="qq={a:1,b:2}">
+			<span>{{qq.b+"...."+qq.a}}</span>
+			<span>{{qq.b+qq.a}}</span>
+			<span ng-bind="qq.a"></span>
+		</div>
+		
+		<!-- 数组 -->
+		<div ng-app ng-init="q2=[1,2,3,4]">
+			<p>{{q2[0]+q2[1]}}</p>
+		</div>
+<!-- angular.js指令 angularJs通过指令（新属性）来扩展html的，通过内置的指令添加功能，也可以自定义指令-->
+	<!--
+		ng-app:初始化angularJs应用程序
+		ng-init：初始化应用程序数据
+		ng-model:将输入值绑定到应用程序
+	-->
+	<div ng-controller="txt">
+		<p>{{greeting.tit}},AngularJs</p>
+	</div>
+	<b></b>
+	<input type="text" ng-model="greet.text">
+	<p>{{greet.text}},我来了</p>
+	<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+	<script type="text/javascript" src="js/myangular.js"></script>
+	<script>
+	// MVC
+		var myModule= angular.module("txt",[]);
+		myModule.controller("txt",["$scope",function($scope){
+			$scope.title = {
+				tit:"我在学习"
+			}
+		}]);
+	// 模块化  指令系统
+		var myModule2=angular.module("myModule2",[]);
+		myModule2.directive("b",function(){
+			return{
+				restrict:"E",
+				template:"<div>hi,everyone</div>",
+				replace:true
+			}
+		});
+		//双向数据绑定
+	</script>
+</body>
+</html>
